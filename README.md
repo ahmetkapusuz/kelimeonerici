@@ -4,10 +4,11 @@ This library takes Turkish words without any Turkish special character and retur
 
 Sample call 
 
-    		KelimeOnerici ko = new KelimeOnerici();
-		String word = "cocuk";
-		String suggestedWord = ko.suggestWord(word);
-    		System.out.println(suggestedWord);
-
+```java
+KelimeOnerici ko = new KelimeOnerici();
+String word = "cocuk";
+String suggestedWord = ko.suggestWord(word);
+System.out.println(suggestedWord);
+```
 
 Prints : çocuk
