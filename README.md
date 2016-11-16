@@ -9,4 +9,5 @@ Sample call
 		String suggestedWord = ko.suggestWord(word);
     		System.out.println(suggestedWord);
 
+
 Prints : çocuk
