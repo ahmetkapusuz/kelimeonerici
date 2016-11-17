@@ -2,6 +2,7 @@ package com.ahmetkapusuz.kelimeonerici;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class KelimeOnerici {
@@ -13,27 +14,67 @@ public class KelimeOnerici {
 	private Scanner scannerEn;
 
 	public KelimeOnerici() {
-
+		
 	}
 
-	public ArrayList<String> suggestWord(String word) {
-
+	public List<String> suggestWords(String word) {
+		suggestedWordList = new ArrayList<>();
 		scannerTr = new Scanner(getClass().getResourceAsStream("/" + trFilePath), "UTF-8");
 		scannerEn = new Scanner(getClass().getResourceAsStream("/" + enFilePath));
 
 		while (scannerTr.hasNextLine()) {
 			String trLineFromFile = scannerTr.nextLine();
 			String enLineFromFile = scannerEn.nextLine();
-//				if (enLineFromFile.contains(word)) {
-//					// a match!
-//					System.out.println("En file:  " + word + " -  Tr File: " + trLineFromFile);
-//					break;
-//				}
 			if (enLineFromFile.equals(word)) {
-				System.out.println("En file:  " + word + " -  Tr File: " + trLineFromFile);
-				break;
+				//System.out.println("En file:  " + word + " -  Tr File: " + trLineFromFile);
+				suggestedWordList.add(trLineFromFile);
 			}
 		}
+		
+		scannerTr.close();
+		scannerEn.close();
+
+		return suggestedWordList;
+
+	}
+	
+	public List<String> suggestWordsStartsWith(String word) {
+		suggestedWordList = new ArrayList<>();
+		scannerTr = new Scanner(getClass().getResourceAsStream("/" + trFilePath), "UTF-8");
+		scannerEn = new Scanner(getClass().getResourceAsStream("/" + enFilePath));
+
+		while (scannerTr.hasNextLine()) {
+			String trLineFromFile = scannerTr.nextLine();
+			String enLineFromFile = scannerEn.nextLine();
+			if (enLineFromFile.startsWith(word)) {
+				//System.out.println("En file:  " + word + " -  Tr File: " + trLineFromFile);
+				suggestedWordList.add(trLineFromFile);
+			}
+		}
+		
+		scannerTr.close();
+		scannerEn.close();
+
+		return suggestedWordList;
+
+	}
+	
+	public List<String> suggestWordsContains(String word) {
+		suggestedWordList = new ArrayList<>();
+		scannerTr = new Scanner(getClass().getResourceAsStream("/" + trFilePath), "UTF-8");
+		scannerEn = new Scanner(getClass().getResourceAsStream("/" + enFilePath));
+
+		while (scannerTr.hasNextLine()) {
+			String trLineFromFile = scannerTr.nextLine();
+			String enLineFromFile = scannerEn.nextLine();
+			if (enLineFromFile.contains(word)) {
+				//System.out.println("En file:  " + word + " -  Tr File: " + trLineFromFile);
+				suggestedWordList.add(trLineFromFile);
+			}
+		}
+		
+		scannerTr.close();
+		scannerEn.close();
 
 		return suggestedWordList;
 
